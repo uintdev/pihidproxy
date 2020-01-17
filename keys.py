@@ -1,5 +1,9 @@
+#!/usr/bin/env python
+
 import evdev, time
 from evdev import InputDevice, categorize, ecodes
+
+NULL_CHAR = chr(0)
 
 dev =  None
 while dev is None:
