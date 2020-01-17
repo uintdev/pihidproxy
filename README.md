@@ -24,6 +24,7 @@ To pull this off, a few changes have to be made:
     echo "dwc2" | sudo tee -a /etc/modules
     echo "libcomposite" | sudo tee -a /etc/modules
     sudo modprobe g_mass_storage
+    pip install evdev
 
 Ensure the files from this repository are stored under `/home/pi/pihidproxy` and run the following:
 
