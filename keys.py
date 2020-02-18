@@ -5,13 +5,13 @@ from evdev import InputDevice, categorize, ecodes
 
 NULL_CHAR = chr(0)
 
-dev =  None
+dev = None
 while dev is None:
-        try:
-           dev = InputDevice('/dev/input/event0')
-        except:
-           print "No keyboard - waiting..."
-           time.sleep (10)
+    try:
+        dev = InputDevice('/dev/input/event0')
+    except:
+        print "No keyboard - waiting..."
+        time.sleep(10)
 
 def write_report(report):
     with open('/dev/hidg0', 'rb+') as fd:
@@ -31,9 +31,9 @@ scancodes = {
 #grab provides exclusive access to the device
 dev.grab()
 
-deadkey=False
-caps= False
-hidkey =0
+deadkey = False
+caps = False
+hidkey = 0
 
 #loop
 for event in dev.read_loop():
@@ -50,10 +50,10 @@ for event in dev.read_loop():
 
             # print key_lookup, data.scancode
 
-            if len(key_lookup) == 1 :
-               hidkey = ord(key_lookup) - 93 # a-z
+            if len(key_lookup) == 1:
+                hidkey = ord(key_lookup) - 93 # a-z
             if hidkey < 0: # 1-9
-                   hidkey = 0
+                hidkey = 0
 
                     
             if data.scancode == 2: hidkey = 30 # 1
