@@ -20,35 +20,43 @@ It works by copying keypresses from the bluetooth keyboard to the piZero's USB.
 
 To pull this off, a few changes have to be made:
 
-    echo "dtoverlay=dwc2" | sudo tee -a /boot/config.txt
-    echo "dwc2" | sudo tee -a /etc/modules
-    echo "libcomposite" | sudo tee -a /etc/modules
-    sudo modprobe g_mass_storage
-    pip install evdev
+```bash
+echo "dtoverlay=dwc2" | sudo tee -a /boot/config.txt
+echo "dwc2" | sudo tee -a /etc/modules
+echo "libcomposite" | sudo tee -a /etc/modules
+sudo modprobe g_mass_storage
+pip install evdev
+```
 
-Ensure the files from this repository are stored under `/home/pi/pihidproxy` and run the following:
+Ensure the files from this repository are stored under `bash /home/pi/pihidproxy` and run the following:
 
-    chmod +x /home/pi/pihidproxy/*.sh
+```bash
+chmod +x /home/pi/pihidproxy/*.sh
+```
 
 ## Setting up service
 
 Run `sudo nano /etc/systemd/system/hidproxy.service` and save the contents below:
 
-    [Unit]
-    Description=HID Proxy
-    After=bluetooth.service
-    Requires=bluetooth.service
+```ini
+[Unit]
+Description=HID Proxy
+After=bluetooth.service
+Requires=bluetooth.service
 
-    [Service]
-    ExecStart=/home/pi/pihidproxy/start.sh
-    Restart=on-failure
+[Service]
+ExecStart=/home/pi/pihidproxy/start.sh
+Restart=on-failure
     
-    [Install]
-    WantedBy=multi-user.target
+[Install]
+WantedBy=multi-user.target
+```
 
 Enable the systemd service:
 
-    sudo systemctl enable hidproxy
+```bash
+sudo systemctl enable hidproxy
+```
 
 ## Device identity
 
