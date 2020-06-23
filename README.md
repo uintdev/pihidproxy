@@ -28,7 +28,7 @@ sudo modprobe g_mass_storage
 pip install evdev
 ```
 
-Ensure the files from this repository are stored under `bash /home/pi/pihidproxy` and run the following:
+Ensure the files from this repository are stored under `/home/pi/pihidproxy` and run the following:
 
 ```bash
 chmod +x /home/pi/pihidproxy/*.sh
